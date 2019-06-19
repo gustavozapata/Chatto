@@ -8,7 +8,7 @@ class DataAccess {
     private $connection;
 
     private function __construct() {
-        require_once "db/database.php";
+        require_once "database.php";
         $this->connection = new PDO("mysql:host={$host}; dbname={$database}", $user, $contrasena, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     }
 

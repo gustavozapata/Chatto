@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700,900"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/index.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <title>Welcome to Chatto</title>
+  </head>
+  <body>
+    <header>
+      <div class="technologies">
+        <img src="images/technologies.png" alt="technologies icon" />
+        <p class="text-theme">Technologies</p>
+      </div>
+      <div class="title"><h1 class="title-theme">WELCOME TO CHATTO</h1></div>
+      <div class="theme">
+        <img src="images/sun.png" alt="dark/light theme icon" />
+        <p class="text-theme">Theme</p>
+      </div>
+    </header>
+    <section class="main">
+      <article class="hand-article">
+        <img src="images/hand.png" alt="welcome hand icon" />
+      </article>
+      <article class="user-article">
+        <input id="name_input" name="username" required autocomplete="off" />
+        <p class="label-theme">enter a username</p>
+        <p id="warning">⚠️Enter a username before going to the chat room</p>
+      </article>
+
+      <!-- TOPICS AND/OR ROOMS -->
+      <!-- <article class="topic-article">
+        <span class="family">
+          <img src="./images/family.png" alt="family icon" />
+          <h4 class="text-theme">
+            Family <img src="./images/padlock.png" alt="padlock icon" />
+          </h4>
+        </span>
+        <span class="football">
+          <img src="./images/football.png" alt="football icon" />
+          <h4 class="text-theme">Football</h4>
+        </span>
+        <span class="food">
+          <img src="./images/food.png" alt="food icon" />
+          <h4 class="text-theme">Food</h4>
+        </span>
+        <p class="label-theme">choose a topic</p>
+      </article> -->
+
+      <article class="join-article">
+        <a href="/tech" id="join">JOIN</a>
+      </article>
+    </section>
+    <footer>
+      <h3>
+        Designed and Developed by
+        <a href="https://gustavozapata.me" target="_blank">Gustavo Zapata</a>
+      </h3>
+    </footer>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io("/tech");
+      $("#name_input").val("");
+      $("#join").on("click", e => {
+        if ($("#name_input").val() <= 0) {
+          e.preventDefault();
+          $("#warning").css("visibility", "visible");
+        } else {
+          let user = $("#name_input").val();
+          socket.emit("user", { user });
+        }
+      });
+
+      $("#name_input").on("keydown", () => {
+        $("#warning").css("visibility", "hidden");
+      });
+    </script>
+  </body>
+</html>

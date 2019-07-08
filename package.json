@@ -1,0 +1,25 @@
+{
+  "name": "chatter-socket-io",
+  "version": "1.0.0",
+  "description": "Lynda Node.js: Real-Time Web with Socket.IO",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon ./index.js --exec babel-node -e js",
+    "test": "set DEBUG=* & nodemon ./index.js --exec babel-node -e js"
+  },
+  "author": "Gustavo Zapata",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.22",
+    "nodemon": "^1.18.10",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1"
+  }
+}
